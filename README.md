@@ -78,7 +78,7 @@ http://127.0.0.1:8000/
 * Sai Sangeetha Padakanti
 * Sri Laxmi Pakala
 * Akshaya Urati
-* Manikanta Thummala
+* Tummala Manikanta
 
 ## Future Enhancements
 
