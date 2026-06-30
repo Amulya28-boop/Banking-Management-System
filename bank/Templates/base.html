@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Banking System{% endblock %}</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: #1e3a8a;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            margin-left: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* CONTENT */
+        .container {
+            padding: 20px;
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+            background: #1e3a8a;
+            color: white;
+        }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div><b>Banking System</b></div>
+
+    <div>
+        <a href="{% url 'dashboard' %}">Home</a>
+        <a href="{% url 'customer_list' %}">Customers</a>
+        <a href="{% url 'add_customer' %}">Add Customer</a>
+        <a href="{% url 'monthly_dashboard' %}">Monthly Dashboard</a>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'signup' %}">Signup</a>
+        {% endif %}
+    </div>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    © 2026 Banking Management System | Developed by You
+</div>
+
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Customer</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f4f4f4;
+        }
+
+        .container{
+            width:450px;
+            margin:50px auto;
+            background:white;
+            padding:25px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+        }
+
+        h2{
+            text-align:center;
+            color:#007BFF;
+        }
+
+        label{
+            font-weight:bold;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin-top:5px;
+            margin-bottom:15px;
+            border:1px solid #ccc;
+            border-radius:5px;
+            box-sizing:border-box;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            background:#007BFF;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        button:hover{
+            background:#0056b3;
+        }
+
+        .back{
+            display:block;
+            text-align:center;
+            margin-top:15px;
+            text-decoration:none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Edit Customer</h2>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<label>Name</label>
+<input type="text" name="name" value="{{ customer.name }}" required>
+
+<label>Email</label>
+<input type="email" name="email" value="{{ customer.email }}" required>
+
+<label>Phone</label>
+<input type="text" name="phone" value="{{ customer.phone }}" required>
+
+<label>Account Number</label>
+<input type="text" name="account_number" value="{{ customer.account_number }}" required>
+
+<button type="submit">Update Customer</button>
+
+</form>
+
+<a class="back" href="{% url 'customer_list' %}">
+← Back to Customer List
+</a>
+
+</div>
+
+</body>
+</html>

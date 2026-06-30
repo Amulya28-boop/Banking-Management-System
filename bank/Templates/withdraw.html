@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Withdraw Money</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f4f4f4;
+        }
+
+        .container{
+            width:450px;
+            margin:50px auto;
+            background:white;
+            padding:25px;
+            border-radius:10px;
+            box-shadow:0px 0px 10px gray;
+        }
+
+        h2{
+            text-align:center;
+            color:#dc3545;
+        }
+
+        p{
+            font-size:18px;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin-top:10px;
+            margin-bottom:20px;
+            border:1px solid #ccc;
+            border-radius:5px;
+            box-sizing:border-box;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            background:#dc3545;
+            color:white;
+            border:none;
+            border-radius:5px;
+            font-size:16px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#b02a37;
+        }
+
+        .error{
+            color:red;
+            text-align:center;
+            font-weight:bold;
+        }
+
+        a{
+            display:block;
+            text-align:center;
+            margin-top:20px;
+            text-decoration:none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Withdraw Money</h2>
+
+<p><strong>Customer :</strong> {{ customer.name }}</p>
+
+<p><strong>Account Number :</strong> {{ customer.account_number }}</p>
+
+<p><strong>Current Balance :</strong> ₹ {{ customer.balance }}</p>
+
+{% if error %}
+<p class="error">{{ error }}</p>
+{% endif %}
+
+<form method="POST">
+
+{% csrf_token %}
+
+<label>Withdraw Amount</label>
+
+<input
+type="number"
+name="amount"
+step="0.01"
+min="1"
+required>
+
+<button type="submit">
+Withdraw
+</button>
+
+</form>
+
+<a href="{% url 'customer_list' %}">
+Back to Customer List
+</a>
+
+</div>
+
+</body>
+</html>

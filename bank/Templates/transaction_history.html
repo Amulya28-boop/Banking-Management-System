@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transaction History</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f9;
+            margin: 0;
+        }
+
+        .header {
+            background: #1f2a44;
+            color: white;
+            padding: 15px;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        select {
+            padding: 8px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            background: white;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #1f2a44;
+            color: white;
+        }
+
+        .credit {
+            color: green;
+            font-weight: bold;
+        }
+
+        .debit {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    Transaction History - {{ customer.name }}
+</div>
+
+<div class="container">
+
+    <!-- FILTER -->
+    <form method="get">
+        <select name="type" onchange="this.form.submit()">
+            <option value="">All</option>
+            <option value="DEPOSIT">Deposit</option>
+            <option value="WITHDRAW">Withdraw</option>
+        </select>
+    </form>
+
+    <!-- TABLE -->
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Amount</th>
+        </tr>
+
+        {% for t in transactions %}
+        <tr>
+            <td>{{ t.date }}</td>
+
+            <td>
+                {% if t.transaction_type == "DEPOSIT" %}
+                    <span class="credit">Deposit</span>
+                {% else %}
+                    <span class="debit">Withdraw</span>
+                {% endif %}
+            </td>
+
+            <td>{{ t.amount }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</div>
+
+</body>
+</html>

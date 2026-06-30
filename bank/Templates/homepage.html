@@ -1,0 +1,432 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNION BANK</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+/* NAVBAR */
+
+.navbar{
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+    background:#003366;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 50px;
+    z-index:1000;
+}
+
+.logo{
+    color:white;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.navbar ul{
+    display:flex;
+    list-style:none;
+}
+
+.navbar ul li{
+    margin-left:25px;
+}
+
+.navbar ul li a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.navbar ul li a:hover{
+    color:#ffd700;
+}
+
+/* HERO */
+
+.hero{
+
+    height:100vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+    url("https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=80");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    color:white;
+
+}
+
+.hero h1{
+    font-size:65px;
+}
+
+.hero p{
+    font-size:24px;
+    margin:20px 0;
+}
+
+.hero a{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:15px 35px;
+
+    background:#ffd700;
+
+    color:#003366;
+
+    text-decoration:none;
+
+    border-radius:8px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+.hero a:hover{
+    background:white;
+}
+
+/* ABOUT */
+
+.about{
+
+    padding:80px 10%;
+
+    text-align:center;
+
+}
+
+.about h2{
+
+    color:#003366;
+
+    margin-bottom:20px;
+
+}
+
+.about p{
+
+    font-size:18px;
+
+    line-height:1.8;
+
+}
+
+/* SERVICES */
+
+.services{
+
+    background:#eaf4ff;
+
+    padding:80px 10%;
+
+}
+
+.services h2{
+
+    text-align:center;
+
+    color:#003366;
+
+    margin-bottom:40px;
+
+}
+
+.service-box{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+}
+
+.card{
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+.card h3{
+
+    color:#003366;
+
+    margin-bottom:15px;
+
+}
+
+/* FEATURES */
+
+.features{
+
+    padding:80px 10%;
+
+}
+
+.features h2{
+
+    text-align:center;
+
+    color:#003366;
+
+    margin-bottom:40px;
+
+}
+
+.feature-list{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+}
+
+.feature{
+
+    background:white;
+
+    padding:25px;
+
+    border-left:5px solid #003366;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+
+}
+
+/* CONTACT */
+
+.contact{
+
+    background:#003366;
+
+    color:white;
+
+    text-align:center;
+
+    padding:70px 20px;
+
+}
+
+.contact h2{
+
+    margin-bottom:20px;
+
+}
+
+.contact p{
+
+    margin:10px;
+
+    font-size:18px;
+
+}
+
+/* FOOTER */
+
+footer{
+
+    background:#001a33;
+
+    color:white;
+
+    text-align:center;
+
+    padding:15px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="logo">🏦 UNION BANK</div>
+
+<ul>
+
+<li><a href="#">Home</a></li>
+
+<li><a href="#about">About</a></li>
+
+<li><a href="#services">Services</a></li>
+
+<li><a href="#contact">Contact</a></li>
+
+<li><a href="{% url 'login' %}">Login</a></li>
+
+</ul>
+
+</div>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div>
+
+<h1>Welcome to UNION BANK</h1>
+
+<p>Your Trusted Banking Partner</p>
+
+<a href="{% url 'login' %}">Get Started</a>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="about" id="about">
+
+<h2>About UNION BANK</h2>
+
+<p>
+
+UNION BANK Management System is a secure banking application developed
+using Django. It allows customer management, deposits, withdrawals,
+fund transfers, transaction history, PDF statement generation and
+monthly analytics through an easy-to-use interface.
+
+</p>
+
+</section>
+
+<!-- SERVICES -->
+
+<section class="services" id="services">
+
+<h2>Our Services</h2>
+
+<div class="service-box">
+
+<div class="card">
+<h3>💳 Customer Accounts</h3>
+<p>Create and manage customer accounts.</p>
+</div>
+
+<div class="card">
+<h3>💰 Deposit Money</h3>
+<p>Deposit funds securely.</p>
+</div>
+
+<div class="card">
+<h3>💸 Withdraw Money</h3>
+<p>Safe and instant withdrawals.</p>
+</div>
+
+<div class="card">
+<h3>🔄 Money Transfer</h3>
+<p>Transfer funds between accounts.</p>
+</div>
+
+<div class="card">
+<h3>📄 PDF Statements</h3>
+<p>Download account statements.</p>
+</div>
+
+<div class="card">
+<h3>📊 Analytics</h3>
+<p>Monthly transaction reports and charts.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="features">
+
+<h2>Why Choose UNION BANK?</h2>
+
+<div class="feature-list">
+
+<div class="feature">🔒 Secure Banking System</div>
+<div class="feature">⚡ Fast Transactions</div>
+<div class="feature">📱 Easy Customer Management</div>
+<div class="feature">📈 Monthly Reports</div>
+<div class="feature">🌍 Digital Banking</div>
+<div class="feature">🛡 Reliable Services</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+<h2>Contact Us</h2>
+
+<p>📍 Hyderabad, Telangana</p>
+
+<p>📞 +91 98765 43210</p>
+
+<p>📧 support@unionbank.com</p>
+
+</section>
+
+<footer>
+
+© 2026 UNION BANK | Banking Management System
+
+</footer>
+
+</body>
+</html>

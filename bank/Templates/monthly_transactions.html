@@ -1,0 +1,196 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monthly Transactions</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, sans-serif;
+
+            background:
+            linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),
+            url("{% static 'image.jpg' %}");
+
+            background-size:cover;
+            background-position:center;
+            background-repeat:no-repeat;
+            background-attachment:fixed;
+
+            min-height:100vh;
+        }
+
+        .container{
+            width:100%;
+            text-align:center;
+            padding:40px;
+        }
+
+        h2{
+            color:white;
+            font-size:38px;
+            margin-bottom:25px;
+            text-shadow:2px 2px 8px black;
+        }
+
+        .box{
+
+            width:420px;
+            height:420px;
+
+            margin:auto;
+
+            background:rgba(255,255,255,0.95);
+
+            border-radius:20px;
+
+            padding:20px;
+
+            box-shadow:0 10px 35px rgba(0,0,0,.45);
+
+        }
+
+        .info{
+
+            margin-top:25px;
+
+            color:white;
+
+            font-size:24px;
+
+            font-weight:bold;
+
+            text-shadow:2px 2px 6px black;
+
+        }
+
+        .info p{
+            margin:12px;
+        }
+
+        .btn{
+
+            display:inline-block;
+
+            margin-top:30px;
+
+            padding:12px 28px;
+
+            background:#0d47a1;
+
+            color:white;
+
+            text-decoration:none;
+
+            border-radius:8px;
+
+            font-size:18px;
+
+            transition:.3s;
+
+        }
+
+        .btn:hover{
+
+            background:#1565c0;
+
+            transform:scale(1.05);
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>🏦 Monthly Transactions - {{ year }}</h2>
+
+    <div class="box">
+        <canvas id="chart"></canvas>
+    </div>
+
+    <div class="info">
+
+        <p>💰 Total Deposits : ₹ {{ total_deposit }}</p>
+
+        <p>💸 Total Withdrawals : ₹ {{ total_withdraw }}</p>
+
+    </div>
+
+    <a href="{% url 'dashboard' %}" class="btn">
+        ⬅ Back to Dashboard
+    </a>
+
+</div>
+
+<script>
+
+const deposits = JSON.parse('{{ deposit_data|escapejs }}');
+const withdrawals = JSON.parse('{{ withdraw_data|escapejs }}');
+
+let totalDeposit = deposits.reduce((a,b)=>a+b,0);
+let totalWithdraw = withdrawals.reduce((a,b)=>a+b,0);
+
+new Chart(document.getElementById('chart'),{
+
+    type:'pie',
+
+    data:{
+
+        labels:['Deposits','Withdrawals'],
+
+        datasets:[{
+
+            data:[totalDeposit,totalWithdraw],
+
+            backgroundColor:[
+                '#16a34a',
+                '#dc2626'
+            ],
+
+            borderColor:'#ffffff',
+
+            borderWidth:3
+
+        }]
+
+    },
+
+    options:{
+
+        responsive:true,
+
+        plugins:{
+
+            legend:{
+                position:'top',
+                labels:{
+                    font:{
+                        size:16
+                    }
+                }
+            }
+
+        }
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

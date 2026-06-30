@@ -1,0 +1,11 @@
+<h2>Loans</h2>
+
+{% for loan in loans %}
+<p>
+    {{ loan.customer.name }} - {{ loan.amount }} - {{ loan.status }}
+
+    {% if loan.status == "PENDING" %}
+        <a href="{% url 'approve' loan.id %}">Approve</a>
+    {% endif %}
+</p>
+{% endfor %}

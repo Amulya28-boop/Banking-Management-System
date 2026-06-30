@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+
+<div style="max-width: 400px; margin: 50px auto; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+
+    <h2 style="text-align:center; color:#1e3a8a;">Create Account</h2>
+
+    {% if error %}
+        <p style="color:red; text-align:center;">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Username</label>
+        <input type="text" name="username" required
+               style="width:100%; padding:10px; margin:8px 0;">
+
+        <label>Password</label>
+        <input type="password" name="password" required
+               style="width:100%; padding:10px; margin:8px 0;">
+
+        <label>Confirm Password</label>
+        <input type="password" name="confirm_password" required
+               style="width:100%; padding:10px; margin:8px 0;">
+
+        <button type="submit"
+                style="width:100%; padding:10px; background:#1e3a8a; color:white; border:none; border-radius:5px; margin-top:10px;">
+            Signup
+        </button>
+    </form>
+
+    <p style="text-align:center; margin-top:15px;">
+        Already have an account?
+        <a href="{% url 'login' %}">Login</a>
+    </p>
+
+</div>
+
+{% endblock %}

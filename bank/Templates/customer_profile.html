@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Profile</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+
+            background-image: url("https://images.unsplash.com/photo-1554224155-1696413565d3?auto=format&fit=crop&w=1600&q=80");
+            background-size: cover;
+            background-position: center;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: -1;
+        }
+
+        .container {
+            padding: 30px;
+            color: white;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.95);
+            color: black;
+            padding: 20px;
+            border-radius: 12px;
+            width: 80%;
+            margin: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .box {
+            background: #f1f5f9;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .actions {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            margin: 5px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            display: inline-block;
+        }
+
+        .deposit { background: #16a34a; }
+        .withdraw { background: #dc2626; }
+        .transfer { background: #f59e0b; }
+        .back { background: #1e3a8a; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background: #1e3a8a;
+            color: white;
+            padding: 10px;
+        }
+
+        td {
+            text-align: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h2>Customer Profile</h2>
+
+        <!-- CUSTOMER INFO -->
+        <div class="info">
+            <div class="box"><b>Name:</b> {{ customer.name }}</div>
+            <div class="box"><b>Account:</b> {{ customer.account_number }}</div>
+            <div class="box"><b>Email:</b> {{ customer.email }}</div>
+            <div class="box"><b>Balance:</b> ₹ {{ customer.balance }}</div>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="actions">
+            <a class="btn deposit" href="{% url 'deposit' customer.id %}">Deposit</a>
+            <a class="btn withdraw" href="{% url 'withdraw' customer.id %}">Withdraw</a>
+            <a class="btn transfer" href="{% url 'transfer' customer.id %}">Transfer</a>
+            <a class="btn back" href="{% url 'customer_list' %}">Back</a>
+        </div>
+
+        <!-- LAST TRANSACTIONS -->
+        <h3>Recent Transactions</h3>
+
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Amount</th>
+            </tr>
+
+            {% for t in transactions %}
+            <tr>
+                <td>{{ t.date }}</td>
+                <td>{{ t.transaction_type }}</td>
+                <td>₹ {{ t.amount }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>
